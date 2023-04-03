@@ -18,12 +18,13 @@ class _HomePageState extends State<HomePage> {
 
   //Get ID
   Future getDocID() async{
-    await FirebaseFirestore.instance.collection('users').get().then(
-        (snapshot) => snapshot.docs.forEach((document) {
-          docIDs.add(document.reference.id);
-        },
-        ),
-    );
+      await FirebaseFirestore.instance.collection('users').get().then(
+            (snapshot) =>
+            snapshot.docs.forEach((document) {
+              docIDs.add(document.reference.id);
+            },
+            ),
+      );
   }
 
   @override
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Text(
-            user.email!,
+            "user.email!",
           style: TextStyle(fontSize: 16),
         ),
         actions: [

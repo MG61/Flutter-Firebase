@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
 class GetUserName extends StatelessWidget {
   final String documentID;
 
@@ -11,7 +12,6 @@ class GetUserName extends StatelessWidget {
 
     //Получение коллекции
     CollectionReference users = FirebaseFirestore.instance.collection('users');
-
 
     return FutureBuilder<DocumentSnapshot>(
       future: users.doc(documentID).get(),

@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebaseauth/button/square_tile.dart';
+import 'package:firebaseauth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,6 +24,8 @@ class _LoginPageState extends State<LoginPage> {
         password: _passwordController.text.trim(),
     );
 
+
+
   //Избавляемся от контроллеров, когда ими не пользуемся
   @override
     void dispose(){
@@ -28,12 +33,20 @@ class _LoginPageState extends State<LoginPage> {
     _passwordController.dispose();
     super.dispose();
   }
+}
 
-
+Future anonsignIn() async {
+  final userCredential = await FirebaseAuth.instance.signInAnonymously();
 }
 
   @override
   Widget build(BuildContext) {
+
+    final String GitHub = 'assets/images/google.png';
+    final String assetNamePath = 'assets/images/anon.png';
+    AssetImage GitHubi = AssetImage(GitHub);
+    AssetImage Anonym = AssetImage(assetNamePath);
+
     return Scaffold(
         backgroundColor: Colors.grey[300],
         body: SafeArea(
@@ -105,6 +118,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
 
+
+
                   // Кнопка входа
                   SizedBox(height: 10),
                   Padding(
@@ -129,8 +144,56 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
 
+                  SizedBox(height: 50),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Divider(
+                              thickness: 0.5,
+                              color: Colors.grey[400],
+                            ),
+                  ),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Text(
+                            "Другие способы входа",
+                            style: TextStyle(color: Colors.grey[700]),
+                          ),
+                        ),
+                        Expanded(
+                            child:Divider(
+                              thickness: 0.5,
+                              color: Colors.grey[400],
+                            ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  //Кнопка анонима
+                  SizedBox(height: 50),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+
+                      SquareTile(
+                        onTap: () => AuthService().signInWithGoogle(),
+                          imagePath: 'assets/images/google.png',
+
+                      ),
+
+                      SizedBox(width: 25),
+
+                      SquareTile(
+                        onTap: anonsignIn, imagePath: 'assets/images/anon.png'
+                      ),
+                    ],
+                  ),
+
                   // Кнопка регистрации
-                  SizedBox(height: 25),
+                  SizedBox(height: 50),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
