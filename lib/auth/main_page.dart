@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebaseauth/image/downloadimage.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/home_page.dart';
@@ -15,7 +16,7 @@ class MainPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot){
         if(snapshot.hasData){
-          return HomePage();
+          return DownloadImage(title: "Изображения");
         } else{
           return AuthPage();
         }

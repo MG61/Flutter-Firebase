@@ -3,9 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../image/downloadimage.dart';
+
 class RegisterPage extends StatefulWidget {
   final VoidCallback showLoginPage;
-  const RegisterPage({Key? key, required this.showLoginPage}) : super(key: key);
+  RegisterPage({Key? key, required this.showLoginPage}) : super(key: key);
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -208,6 +210,32 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
 
+                  // Кнопка загрузки изображения
+                  SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 110.0),
+                    child: GestureDetector(
+                      onTap: () =>   Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const DownloadImage(title: "Работа с изображениями")),
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(
+                          child: Text("Загрузить фото профиля",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 10,
+                              )),
+                        ),
+                      ),
+                    ),
+                  ),
                   // Кнопка входа
                   SizedBox(height: 10),
                   Padding(
@@ -262,3 +290,4 @@ class _RegisterPageState extends State<RegisterPage> {
         ));
   }
 }
+
